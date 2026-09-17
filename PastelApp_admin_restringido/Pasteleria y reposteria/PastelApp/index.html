@@ -1,816 +1,925 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>PastelApp — Endulza tus momentos</title>
+    <title>PastelApp | Pasteles y bocados</title>
 
-  <meta
-    name="description"
-    content="PastelApp — Plataforma de pasteles, bocaditos y pedidos."
-  />
+    <meta
+        name="description"
+        content="PastelApp - Venta de pasteles, bocados y productos para tus momentos especiales."
+    >
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
-  <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ["Poppins", "system-ui", "sans-serif"]
-          },
-          colors: {
-            rose: {
-              soft: "#e891a8",
-              dark: "#d46b88",
-              light: "#fce8ee"
-            },
-            cream: {
-              DEFAULT: "#fff9f5",
-              dark: "#f5ebe3"
-            },
-            chocolate: {
-              DEFAULT: "#5c3d2e",
-              soft: "#8b6355"
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Poppins", "system-ui", "sans-serif"]
+                    },
+                    colors: {
+                        rose: {
+                            soft: "#e891a8",
+                            dark: "#d46b88",
+                            light: "#fce8ee"
+                        },
+                        cream: {
+                            DEFAULT: "#fff9f5",
+                            dark: "#f5ebe3"
+                        },
+                        chocolate: {
+                            DEFAULT: "#5c3d2e",
+                            soft: "#8b6355"
+                        }
+                    }
+                }
             }
-          }
-        }
-      }
-    };
-  </script>
+        };
+    </script>
 
-  <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body class="font-sans antialiased">
 
-  <!-- ==========================================
-       BANNER
-  =========================================== -->
-
-  <div class="bg-chocolate text-white text-center text-xs sm:text-sm py-2 px-4">
-    Proyecto académico — PastelApp
-  </div>
-
-
-  <!-- ==========================================
-       HEADER
-  =========================================== -->
-
-  <header class="site-header">
-
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-
-      <div class="flex items-center justify-between h-16 md:h-[4.25rem]">
-
-        <!-- LOGO -->
-
-        <a
-          href="index.html"
-          class="brand-logo text-xl sm:text-2xl flex items-center gap-1.5"
-          aria-label="PastelApp inicio"
-        >
-          <span aria-hidden="true">🍰</span>
-          PastelApp
-        </a>
-
-
-        <!-- NAVEGACIÓN ESCRITORIO -->
-
-        <nav
-          class="hidden md:flex items-center gap-6"
-          aria-label="Navegación principal"
-        >
-
-          <a
-            href="index.html"
-            class="nav-link active"
-          >
-            Inicio
-          </a>
-
-          <a
-            href="cliente.html#catalogo"
-            class="nav-link"
-          >
-            Catálogo
-          </a>
-
-          <a
-            href="cliente.html#reseñas"
-            class="nav-link"
-          >
-            Reseñas
-          </a>
-
-          <div
-            id="auth-nav-desktop"
-            class="flex items-center gap-4"
-          >
-
-            <a
-              href="login.html"
-              class="nav-link"
-            >
-              Iniciar sesión
-            </a>
-
-          </div>
-
-          <button
-            type="button"
-            class="relative nav-link flex items-center gap-1"
-            data-open-cart
-            aria-label="Abrir carrito"
-          >
-            🛒 Carrito
-
-            <span
-              class="cart-badge"
-              data-cart-count
-              hidden
-            >
-              0
-            </span>
-
-          </button>
-
-        </nav>
-
-
-        <!-- MENÚ MÓVIL -->
-
-        <div class="flex items-center gap-2 md:hidden">
-
-          <button
-            type="button"
-            class="relative p-2 rounded-full hover:bg-rose-light"
-            data-open-cart
-            aria-label="Abrir carrito"
-          >
-            🛒
-
-            <span
-              class="cart-badge"
-              data-cart-count
-              hidden
-            >
-              0
-            </span>
-
-          </button>
-
-
-          <button
-            type="button"
-            id="menu-toggle"
-            class="p-2 rounded-lg border border-[var(--color-border)] bg-white"
-            aria-expanded="false"
-            aria-controls="mobile-menu"
-            aria-label="Abrir menú"
-          >
-
-            <svg
-              class="w-6 h-6 text-chocolate"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-
-            </svg>
-
-          </button>
-
-        </div>
-
-      </div>
-
-
-      <!-- MENÚ MÓVIL -->
-
-      <div
-        id="mobile-menu"
-        class="mobile-menu md:hidden border-t border-[var(--color-border)]"
-      >
-
-        <nav
-          class="flex flex-col py-3 gap-1"
-          aria-label="Menú móvil"
-        >
-
-          <a
-            href="index.html"
-            class="px-2 py-2.5 rounded-lg font-medium text-chocolate bg-rose-light"
-          >
-            Inicio
-          </a>
-
-          <a
-            href="cliente.html#catalogo"
-            class="px-2 py-2.5 rounded-lg text-[var(--color-muted)] hover:bg-cream-dark"
-          >
-            Catálogo
-          </a>
-
-          <a
-            href="cliente.html#reseñas"
-            class="px-2 py-2.5 rounded-lg text-[var(--color-muted)] hover:bg-cream-dark"
-          >
-            Reseñas
-          </a>
-
-          <a
-            href="login.html"
-            class="px-2 py-2.5 rounded-lg text-[var(--color-muted)] hover:bg-cream-dark"
-          >
-            Iniciar sesión
-          </a>
-
-        </nav>
-
-      </div>
-
+    <!-- BARRA SUPERIOR -->
+    <div class="bg-chocolate text-white text-center text-xs sm:text-sm py-2 px-4">
+        PastelApp — Pasteles, bocados y momentos especiales
     </div>
 
-  </header>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+
+            <div class="flex items-center justify-between h-16 md:h-[4.25rem]">
+
+                <!-- LOGO -->
+                <a
+                    href="index.html"
+                    class="brand-logo text-xl sm:text-2xl flex items-center gap-1.5"
+                    aria-label="PastelApp inicio"
+                >
+                    <span aria-hidden="true">🍰</span>
+                    PastelApp
+                </a>
 
 
-  <!-- ==========================================
-       CONTENIDO PRINCIPAL
-  =========================================== -->
+                <!-- NAVEGACIÓN -->
+                <nav class="hidden md:flex items-center gap-6">
 
-  <main>
+                    <a
+                        href="#inicio"
+                        class="nav-link"
+                    >
+                        Inicio
+                    </a>
 
-    <!-- HERO -->
+                    <a
+                        href="#catalogo"
+                        class="nav-link"
+                    >
+                        Catálogo
+                    </a>
 
-    <section
-      class="hero-section"
-      aria-labelledby="hero-title"
-    >
+                    <a
+                        href="#resenas"
+                        class="nav-link"
+                    >
+                        Reseñas
+                    </a>
 
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-20">
+                    <a
+                        href="login.html"
+                        class="nav-link"
+                    >
+                        Iniciar sesión
+                    </a>
 
-        <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+                    <button
+                        type="button"
+                        id="cart-button"
+                        class="relative"
+                        aria-label="Abrir carrito"
+                    >
+                        🛒
+                        <span
+                            id="cart-count"
+                            class="absolute -top-2 -right-3 bg-rose-dark text-white text-xs rounded-full min-w-[1.25rem] h-5 flex items-center justify-center px-1"
+                        >
+                            0
+                        </span>
+                    </button>
 
-          <div class="animate-in text-center lg:text-left">
+                </nav>
 
-            <p class="demo-badge mb-4">
-              PastelApp
-            </p>
 
-            <h1
-              id="hero-title"
-              class="section-title text-4xl sm:text-5xl lg:text-[3.25rem] leading-tight mb-4"
-            >
-              Endulza tus momentos
-            </h1>
-
-            <p class="text-[var(--color-muted)] text-base sm:text-lg max-w-md mx-auto lg:mx-0 mb-8">
-              Encuentra pasteles y deliciosos bocaditos para cada ocasión.
-            </p>
-
-            <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-
-              <a
-                href="cliente.html#catalogo"
-                class="btn-primary"
-              >
-                Ver catálogo
-              </a>
-
-              <a
-                href="login.html"
-                class="btn-secondary"
-              >
-                Iniciar sesión
-              </a>
+                <!-- BOTÓN MENÚ MÓVIL -->
+                <button
+                    type="button"
+                    id="mobile-menu-button"
+                    class="md:hidden text-xl"
+                    aria-label="Abrir menú"
+                    aria-expanded="false"
+                >
+                    ☰
+                </button>
 
             </div>
 
-          </div>
 
+            <!-- MENÚ MÓVIL -->
+            <div
+                id="mobile-menu"
+                class="hidden md:hidden pb-4"
+            >
 
-          <div
-            class="hero-visual"
-            role="img"
-            aria-label="Ilustración decorativa de pastel"
-          >
-            🍰
-          </div>
+                <div class="flex flex-col gap-3 pt-2">
+
+                    <a
+                        href="#inicio"
+                        class="nav-link"
+                    >
+                        Inicio
+                    </a>
+
+                    <a
+                        href="#catalogo"
+                        class="nav-link"
+                    >
+                        Catálogo
+                    </a>
+
+                    <a
+                        href="#resenas"
+                        class="nav-link"
+                    >
+                        Reseñas
+                    </a>
+
+                    <a
+                        href="login.html"
+                        class="nav-link"
+                    >
+                        Iniciar sesión
+                    </a>
+
+                    <button
+                        type="button"
+                        id="mobile-cart-button"
+                        class="text-left nav-link"
+                    >
+                        🛒 Carrito
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
+    </header>
 
-      </div>
 
-    </section>
 
+    <!-- HERO -->
+    <main>
 
-    <!-- CATEGORÍAS -->
-
-    <section
-      class="py-14 sm:py-16"
-      aria-labelledby="cat-title"
-    >
-
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
-
-        <div class="text-center mb-10">
-
-          <h2
-            id="cat-title"
-            class="section-title text-2xl sm:text-3xl mb-2"
-          >
-            Categorías
-          </h2>
-
-          <p class="text-[var(--color-muted)] text-sm sm:text-base">
-            Explora nuestros productos.
-          </p>
-
-        </div>
-
-
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-
-          <a
-            href="cliente.html#catalogo"
-            class="card-category"
-          >
-
-            <span
-              class="text-4xl block mb-2"
-              aria-hidden="true"
-            >
-              🎂
-            </span>
-
-            <span class="font-semibold text-chocolate text-sm sm:text-base">
-              Pasteles
-            </span>
-
-          </a>
-
-
-          <a
-            href="cliente.html#catalogo"
-            class="card-category"
-          >
-
-            <span
-              class="text-4xl block mb-2"
-              aria-hidden="true"
-            >
-              🧁
-            </span>
-
-            <span class="font-semibold text-chocolate text-sm sm:text-base">
-              Cupcakes
-            </span>
-
-          </a>
-
-
-          <a
-            href="cliente.html#catalogo"
-            class="card-category"
-          >
-
-            <span
-              class="text-4xl block mb-2"
-              aria-hidden="true"
-            >
-              🍪
-            </span>
-
-            <span class="font-semibold text-chocolate text-sm sm:text-base">
-              Bocaditos
-            </span>
-
-          </a>
-
-
-          <a
-            href="cliente.html#catalogo"
-            class="card-category"
-          >
-
-            <span
-              class="text-4xl block mb-2"
-              aria-hidden="true"
-            >
-              🎉
-            </span>
-
-            <span class="font-semibold text-chocolate text-sm sm:text-base">
-              Ocasiones especiales
-            </span>
-
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- PRODUCTOS DESTACADOS -->
-
-    <section
-      class="py-14 sm:py-16 bg-white/60"
-      aria-labelledby="feat-title"
-    >
-
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
-
-        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
-
-          <div>
-
-            <h2
-              id="feat-title"
-              class="section-title text-2xl sm:text-3xl mb-2"
-            >
-              Productos destacados
-            </h2>
-
-            <p class="text-[var(--color-muted)] text-sm sm:text-base">
-              Descubre algunos de nuestros productos.
-            </p>
-
-          </div>
-
-
-          <a
-            href="cliente.html#catalogo"
-            class="btn-ghost self-start sm:self-auto"
-          >
-            Ver catálogo
-          </a>
-
-        </div>
-
-
-        <div
-          id="featured-grid"
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
-        ></div>
-
-      </div>
-
-    </section>
-
-
-    <!-- RESEÑAS -->
-
-    <section
-      class="py-14 sm:py-16"
-      aria-labelledby="rev-preview-title"
-    >
-
-      <div class="max-w-6xl mx-auto px-4 sm:px-6">
-
-        <div class="text-center mb-10">
-
-          <h2
-            id="rev-preview-title"
-            class="section-title text-2xl sm:text-3xl mb-2"
-          >
-            Lo que dicen nuestros clientes
-          </h2>
-
-          <p class="text-[var(--color-muted)] text-sm">
-            Opiniones de nuestros clientes.
-          </p>
-
-        </div>
-
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-
-          <article class="card-review">
-
-            <p
-              class="stars mb-2"
-              aria-label="5 estrellas"
-            >
-              ⭐⭐⭐⭐⭐
-            </p>
-
-            <p class="text-sm text-[var(--color-muted)] mb-4">
-              "El pedido llegó muy bien presentado."
-            </p>
-
-            <p class="font-semibold text-chocolate text-sm">
-              — Ana
-            </p>
-
-          </article>
-
-
-          <article class="card-review">
-
-            <p
-              class="stars mb-2"
-              aria-label="5 estrellas"
-            >
-              ⭐⭐⭐⭐⭐
-            </p>
-
-            <p class="text-sm text-[var(--color-muted)] mb-4">
-              "Interfaz clara y fácil de usar."
-            </p>
-
-            <p class="font-semibold text-chocolate text-sm">
-              — Luis
-            </p>
-
-          </article>
-
-
-          <article class="card-review">
-
-            <p
-              class="stars mb-2"
-              aria-label="4 estrellas"
-            >
-              ⭐⭐⭐⭐☆
-            </p>
-
-            <p class="text-sm text-[var(--color-muted)] mb-4">
-              "Me gustó el diseño del catálogo."
-            </p>
-
-            <p class="font-semibold text-chocolate text-sm">
-              — Sofía
-            </p>
-
-          </article>
-
-        </div>
-
-
-        <div class="text-center mt-8">
-
-          <a
-            href="cliente.html#reseñas"
-            class="btn-secondary"
-          >
-            Ver reseñas
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ACCESO -->
-
-    <section class="py-12 bg-rose-light/80">
-
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-
-        <h2 class="section-title text-xl sm:text-2xl mb-2">
-          ¿Ya tienes una cuenta?
-        </h2>
-
-        <p class="text-[var(--color-muted)] text-sm mb-5">
-          Inicia sesión para acceder a PastelApp.
-        </p>
-
-        <a
-          href="login.html"
-          class="btn-primary"
+        <section
+            id="inicio"
+            class="py-16 sm:py-20 lg:py-24"
         >
-          Iniciar sesión
-        </a>
 
-      </div>
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
-    </section>
+                <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-  </main>
+                    <div>
+
+                        <span
+                            class="inline-block bg-rose-light text-rose-dark font-semibold text-sm px-4 py-2 rounded-full mb-5"
+                        >
+                            Dulces momentos, hechos para ti
+                        </span>
+
+                        <h1
+                            class="text-4xl sm:text-5xl lg:text-6xl font-bold text-chocolate leading-tight mb-6"
+                        >
+                            El sabor perfecto para
+                            <span class="text-rose-dark">
+                                cada ocasión.
+                            </span>
+                        </h1>
+
+                        <p
+                            class="text-[var(--color-muted)] text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
+                        >
+                            Encuentra pasteles, bocados y productos preparados
+                            para cumpleaños, celebraciones y momentos especiales.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-3">
+
+                            <a
+                                href="#catalogo"
+                                class="btn-primary text-center"
+                            >
+                                Ver catálogo
+                            </a>
+
+                            <a
+                                href="login.html"
+                                class="btn-secondary text-center"
+                            >
+                                Iniciar sesión
+                            </a>
+
+                        </div>
+
+                    </div>
 
 
-  <!-- ==========================================
-       FOOTER
-  =========================================== -->
+                    <!-- ILUSTRACIÓN -->
+                    <div class="flex justify-center">
 
-  <footer class="site-footer">
+                        <div
+                            class="w-full max-w-md aspect-square rounded-3xl bg-rose-light flex items-center justify-center"
+                        >
 
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+                            <div class="text-center">
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+                                <div
+                                    class="text-8xl sm:text-9xl mb-4"
+                                    aria-hidden="true"
+                                >
+                                    🎂
+                                </div>
 
-        <div>
+                                <p class="text-chocolate font-semibold text-xl">
+                                    PastelApp
+                                </p>
 
-          <p class="text-xl font-bold text-white mb-2">
-            🍰 PastelApp
-          </p>
+                                <p class="text-[var(--color-muted)] mt-1">
+                                    Hecho con cariño
+                                </p>
 
-          <p class="text-sm text-white/70 max-w-xs">
-            Una experiencia sencilla para descubrir productos de pastelería.
-          </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CATEGORÍAS -->
+        <section class="py-14 bg-cream-dark">
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+
+                <div class="text-center mb-10">
+
+                    <p class="text-rose-dark font-semibold text-sm uppercase tracking-wide">
+                        Encuentra lo que buscas
+                    </p>
+
+                    <h2 class="section-title mt-2">
+                        Nuestras categorías
+                    </h2>
+
+                </div>
+
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+                    <a
+                        href="#catalogo"
+                        class="bg-white rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition"
+                    >
+                        <div class="text-4xl mb-3">
+                            🎂
+                        </div>
+
+                        <h3 class="font-semibold text-chocolate">
+                            Pasteles
+                        </h3>
+
+                        <p class="text-sm text-[var(--color-muted)] mt-1">
+                            Para celebrar
+                        </p>
+                    </a>
+
+
+                    <a
+                        href="#catalogo"
+                        class="bg-white rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition"
+                    >
+                        <div class="text-4xl mb-3">
+                            🧁
+                        </div>
+
+                        <h3 class="font-semibold text-chocolate">
+                            Cupcakes
+                        </h3>
+
+                        <p class="text-sm text-[var(--color-muted)] mt-1">
+                            Pequeños y deliciosos
+                        </p>
+                    </a>
+
+
+                    <a
+                        href="#catalogo"
+                        class="bg-white rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition"
+                    >
+                        <div class="text-4xl mb-3">
+                            🍪
+                        </div>
+
+                        <h3 class="font-semibold text-chocolate">
+                            Bocados
+                        </h3>
+
+                        <p class="text-sm text-[var(--color-muted)] mt-1">
+                            Para compartir
+                        </p>
+                    </a>
+
+
+                    <a
+                        href="#catalogo"
+                        class="bg-white rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition"
+                    >
+                        <div class="text-4xl mb-3">
+                            🎁
+                        </div>
+
+                        <h3 class="font-semibold text-chocolate">
+                            Especiales
+                        </h3>
+
+                        <p class="text-sm text-[var(--color-muted)] mt-1">
+                            Para sorprender
+                        </p>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CATÁLOGO -->
+        <section
+            id="catalogo"
+            class="py-16 sm:py-20"
+        >
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+
+                <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+
+                    <div>
+
+                        <p class="text-rose-dark font-semibold text-sm uppercase tracking-wide">
+                            Nuestros productos
+                        </p>
+
+                        <h2 class="section-title mt-2">
+                            Productos destacados
+                        </h2>
+
+                    </div>
+
+                    <a
+                        href="login.html"
+                        class="text-rose-dark font-semibold hover:underline"
+                    >
+                        Iniciar sesión para realizar pedidos →
+                    </a>
+
+                </div>
+
+
+                <div
+                    id="products-grid"
+                    class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                >
+
+                    <!-- PRODUCTO 1 -->
+                    <article class="product-card">
+
+                        <div class="product-image">
+                            🎂
+                        </div>
+
+                        <div class="p-5">
+
+                            <span class="product-category">
+                                Pasteles
+                            </span>
+
+                            <h3 class="product-name">
+                                Pastel de chocolate
+                            </h3>
+
+                            <p class="product-description">
+                                Pastel suave de chocolate ideal para celebraciones.
+                            </p>
+
+                            <div class="flex items-center justify-between mt-5">
+
+                                <span class="product-price">
+                                    S/ 45.00
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="btn-primary add-to-cart"
+                                    data-product="Pastel de chocolate"
+                                    data-price="45"
+                                >
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PRODUCTO 2 -->
+                    <article class="product-card">
+
+                        <div class="product-image">
+                            🧁
+                        </div>
+
+                        <div class="p-5">
+
+                            <span class="product-category">
+                                Cupcakes
+                            </span>
+
+                            <h3 class="product-name">
+                                Cupcakes variados
+                            </h3>
+
+                            <p class="product-description">
+                                Cupcakes decorados para compartir en cualquier ocasión.
+                            </p>
+
+                            <div class="flex items-center justify-between mt-5">
+
+                                <span class="product-price">
+                                    S/ 30.00
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="btn-primary add-to-cart"
+                                    data-product="Cupcakes variados"
+                                    data-price="30"
+                                >
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PRODUCTO 3 -->
+                    <article class="product-card">
+
+                        <div class="product-image">
+                            🍪
+                        </div>
+
+                        <div class="p-5">
+
+                            <span class="product-category">
+                                Bocados
+                            </span>
+
+                            <h3 class="product-name">
+                                Bocados surtidos
+                            </h3>
+
+                            <p class="product-description">
+                                Selección de bocados dulces para compartir.
+                            </p>
+
+                            <div class="flex items-center justify-between mt-5">
+
+                                <span class="product-price">
+                                    S/ 25.00
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="btn-primary add-to-cart"
+                                    data-product="Bocados surtidos"
+                                    data-price="25"
+                                >
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PRODUCTO 4 -->
+                    <article class="product-card">
+
+                        <div class="product-image">
+                            🍓
+                        </div>
+
+                        <div class="p-5">
+
+                            <span class="product-category">
+                                Pasteles
+                            </span>
+
+                            <h3 class="product-name">
+                                Pastel de fresa
+                            </h3>
+
+                            <p class="product-description">
+                                Pastel suave con sabor a fresa para momentos especiales.
+                            </p>
+
+                            <div class="flex items-center justify-between mt-5">
+
+                                <span class="product-price">
+                                    S/ 50.00
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="btn-primary add-to-cart"
+                                    data-product="Pastel de fresa"
+                                    data-price="50"
+                                >
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PRODUCTO 5 -->
+                    <article class="product-card">
+
+                        <div class="product-image">
+                            🍫
+                        </div>
+
+                        <div class="p-5">
+
+                            <span class="product-category">
+                                Especiales
+                            </span>
+
+                            <h3 class="product-name">
+                                Brownies
+                            </h3>
+
+                            <p class="product-description">
+                                Brownies de chocolate ideales para compartir.
+                            </p>
+
+                            <div class="flex items-center justify-between mt-5">
+
+                                <span class="product-price">
+                                    S/ 28.00
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="btn-primary add-to-cart"
+                                    data-product="Brownies"
+                                    data-price="28"
+                                >
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PRODUCTO 6 -->
+                    <article class="product-card">
+
+                        <div class="product-image">
+                            🎁
+                        </div>
+
+                        <div class="p-5">
+
+                            <span class="product-category">
+                                Especiales
+                            </span>
+
+                            <h3 class="product-name">
+                                Caja especial
+                            </h3>
+
+                            <p class="product-description">
+                                Una selección de productos para regalar.
+                            </p>
+
+                            <div class="flex items-center justify-between mt-5">
+
+                                <span class="product-price">
+                                    S/ 60.00
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="btn-primary add-to-cart"
+                                    data-product="Caja especial"
+                                    data-price="60"
+                                >
+                                    Agregar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- RESEÑAS -->
+        <section
+            id="resenas"
+            class="py-16 bg-cream-dark"
+        >
+
+            <div class="max-w-6xl mx-auto px-4 sm:px-6">
+
+                <div class="text-center mb-10">
+
+                    <p class="text-rose-dark font-semibold text-sm uppercase tracking-wide">
+                        Opiniones
+                    </p>
+
+                    <h2 class="section-title mt-2">
+                        Lo que dicen nuestros clientes
+                    </h2>
+
+                </div>
+
+
+                <div class="grid md:grid-cols-3 gap-6">
+
+                    <article class="bg-white rounded-2xl p-6 shadow-sm">
+
+                        <div class="text-rose-dark mb-3">
+                            ★★★★★
+                        </div>
+
+                        <p class="text-[var(--color-muted)] leading-relaxed">
+                            “Los productos estuvieron muy ricos y la presentación fue excelente.”
+                        </p>
+
+                        <p class="font-semibold text-chocolate mt-4">
+                            Cliente 1
+                        </p>
+
+                    </article>
+
+
+                    <article class="bg-white rounded-2xl p-6 shadow-sm">
+
+                        <div class="text-rose-dark mb-3">
+                            ★★★★★
+                        </div>
+
+                        <p class="text-[var(--color-muted)] leading-relaxed">
+                            “Me gustó mucho la variedad de productos y la facilidad para realizar el pedido.”
+                        </p>
+
+                        <p class="font-semibold text-chocolate mt-4">
+                            Cliente 2
+                        </p>
+
+                    </article>
+
+
+                    <article class="bg-white rounded-2xl p-6 shadow-sm">
+
+                        <div class="text-rose-dark mb-3">
+                            ★★★★★
+                        </div>
+
+                        <p class="text-[var(--color-muted)] leading-relaxed">
+                            “Una opción práctica para encontrar pasteles y bocados para una celebración.”
+                        </p>
+
+                        <p class="font-semibold text-chocolate mt-4">
+                            Cliente 3
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- LLAMADO A INICIAR SESIÓN -->
+        <section class="py-16 sm:py-20">
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6">
+
+                <div class="bg-chocolate rounded-3xl p-8 sm:p-12 text-center text-white">
+
+                    <div class="text-5xl mb-5">
+                        🍰
+                    </div>
+
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+                        ¿Quieres realizar un pedido?
+                    </h2>
+
+                    <p class="text-white/80 max-w-2xl mx-auto mb-7">
+                        Inicia sesión en PastelApp para acceder a tu cuenta y continuar con tus pedidos.
+                    </p>
+
+                    <a
+                        href="login.html"
+                        class="inline-flex items-center justify-center bg-white text-chocolate font-semibold px-6 py-3 rounded-xl hover:bg-cream transition"
+                    >
+                        Iniciar sesión
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+
+            <div class="flex flex-col md:flex-row justify-between gap-4 items-center">
+
+                <div>
+
+                    <p class="font-semibold text-white">
+                        🍰 PastelApp
+                    </p>
+
+                    <p class="text-xs text-white/60 mt-1">
+                        Pasteles, bocados y momentos especiales.
+                    </p>
+
+                </div>
+
+
+                <p class="text-xs text-white/60 text-center">
+                    Proyecto académico — PastelApp
+                </p>
+
+            </div>
 
         </div>
 
-
-        <div>
-
-          <p class="font-semibold text-white mb-3">
-            Enlaces
-          </p>
-
-          <ul class="space-y-2 text-sm">
-
-            <li>
-              <a href="index.html">
-                Inicio
-              </a>
-            </li>
-
-            <li>
-              <a href="cliente.html#catalogo">
-                Catálogo
-              </a>
-            </li>
-
-            <li>
-              <a href="cliente.html#reseñas">
-                Reseñas
-              </a>
-            </li>
-
-            <li>
-              <a href="login.html">
-                Iniciar sesión
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
+    </footer>
 
 
-        <div>
 
-          <p class="font-semibold text-white mb-3">
-            Acceso
-          </p>
-
-          <ul class="space-y-2 text-sm">
-
-            <li>
-              <a href="cliente.html">
-                Tienda
-              </a>
-            </li>
-
-            <li>
-              <a href="registro.html">
-                Crear cuenta
-              </a>
-            </li>
-
-          </ul>
-
-        </div>
-
-      </div>
-
-
-      <p class="text-center text-xs text-white/50 border-t border-white/10 pt-6">
-        Proyecto académico — PastelApp.
-      </p>
-
-    </div>
-
-  </footer>
-
-
-  <!-- ==========================================
-       CARRITO
-  =========================================== -->
-
-  <div
-    id="cart-overlay"
-    class="overlay"
-    aria-hidden="true"
-  ></div>
-
-
-  <aside
-    id="cart-drawer"
-    class="cart-drawer"
-    aria-hidden="true"
-    aria-label="Carrito de compras"
-  >
-
-    <div class="flex items-center justify-between p-4 border-b border-[var(--color-border)]">
-
-      <h2 class="font-bold text-chocolate text-lg">
-        🛒 Carrito
-      </h2>
-
-      <button
-        type="button"
-        class="p-2 rounded-lg hover:bg-cream-dark"
-        data-close-cart
-        aria-label="Cerrar carrito"
-      >
-        ✕
-      </button>
-
-    </div>
-
-
-    <div class="flex-1 overflow-y-auto px-4">
-
-      <p
-        id="cart-empty"
-        class="empty-state"
-      >
-        Tu carrito está vacío.
-        <br />
-
-        <span class="text-xs">
-          Agrega productos del catálogo.
-        </span>
-
-      </p>
-
-      <div id="cart-items"></div>
-
-    </div>
-
-
+    <!-- CARRITO -->
     <div
-      id="cart-footer"
-      class="p-4 border-t border-[var(--color-border)] space-y-3"
-      hidden
+        id="cart-overlay"
+        class="fixed inset-0 bg-black/40 z-40 hidden"
+    ></div>
+
+
+    <aside
+        id="cart-drawer"
+        class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl translate-x-full transition-transform duration-300"
+        aria-label="Carrito de compras"
     >
 
-      <div class="flex justify-between font-semibold text-chocolate">
+        <div class="h-full flex flex-col">
 
-        <span>
-          Total
-        </span>
+            <div class="flex items-center justify-between p-5 border-b">
 
-        <span id="cart-total">
-          S/ --
-        </span>
+                <h2 class="text-xl font-bold text-chocolate">
+                    🛒 Tu carrito
+                </h2>
 
-      </div>
+                <button
+                    type="button"
+                    id="close-cart"
+                    class="text-2xl text-[var(--color-muted)]"
+                    aria-label="Cerrar carrito"
+                >
+                    ×
+                </button>
 
-
-      <button
-        type="button"
-        id="btn-continue-shopping"
-        class="btn-secondary w-full"
-      >
-        Continuar comprando
-      </button>
+            </div>
 
 
-      <button
-        type="button"
-        id="btn-checkout"
-        class="btn-primary w-full"
-      >
-        Realizar pedido
-      </button>
+            <div
+                id="cart-items"
+                class="flex-1 overflow-y-auto p-5"
+            >
 
-    </div>
+                <p
+                    id="empty-cart"
+                    class="text-center text-[var(--color-muted)] py-10"
+                >
+                    Tu carrito está vacío.
+                </p>
 
-  </aside>
+            </div>
 
 
-  <!-- ==========================================
-       JAVASCRIPT
-  =========================================== -->
+            <div class="border-t p-5">
 
-  <script src="js/scripts.js"></script>
+                <div class="flex justify-between items-center mb-4">
+
+                    <span class="font-semibold text-chocolate">
+                        Total
+                    </span>
+
+                    <span
+                        id="cart-total"
+                        class="font-bold text-xl text-rose-dark"
+                    >
+                        S/ 0.00
+                    </span>
+
+                </div>
+
+
+                <a
+                    href="login.html"
+                    class="btn-primary w-full text-center block"
+                >
+                    Iniciar sesión para continuar
+                </a>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- JAVASCRIPT PRINCIPAL -->
+    <script src="js/js/scripts.js"></script>
 
 </body>
 </html>
-```
