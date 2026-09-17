@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PastelApp | Pasteles y bocados</title>
+    <title>PastelApp | Pasteles, bocados y pedidos</title>
 
     <meta
         name="description"
-        content="PastelApp - Venta de pasteles, bocados y productos para tus momentos especiales."
+        content="PastelApp - Plataforma para visualizar productos, realizar pedidos y gestionar compras de pasteles y bocados."
     >
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,8 +59,12 @@
     </div>
 
 
+    <!-- ============================= -->
     <!-- HEADER -->
+    <!-- ============================= -->
+
     <header class="site-header">
+
         <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
             <div class="flex items-center justify-between h-16 md:h-[4.25rem]">
@@ -69,14 +73,14 @@
                 <a
                     href="index.html"
                     class="brand-logo text-xl sm:text-2xl flex items-center gap-1.5"
-                    aria-label="PastelApp inicio"
+                    aria-label="PastelApp - Inicio"
                 >
                     <span aria-hidden="true">🍰</span>
                     PastelApp
                 </a>
 
 
-                <!-- NAVEGACIÓN -->
+                <!-- NAVEGACIÓN DESKTOP -->
                 <nav class="hidden md:flex items-center gap-6">
 
                     <a
@@ -114,6 +118,7 @@
                         aria-label="Abrir carrito"
                     >
                         🛒
+
                         <span
                             id="cart-count"
                             class="absolute -top-2 -right-3 bg-rose-dark text-white text-xs rounded-full min-w-[1.25rem] h-5 flex items-center justify-center px-1"
@@ -125,7 +130,7 @@
                 </nav>
 
 
-                <!-- BOTÓN MENÚ MÓVIL -->
+                <!-- MENÚ MÓVIL -->
                 <button
                     type="button"
                     id="mobile-menu-button"
@@ -178,7 +183,7 @@
                     <button
                         type="button"
                         id="mobile-cart-button"
-                        class="text-left nav-link"
+                        class="nav-link text-left"
                     >
                         🛒 Carrito
                     </button>
@@ -188,12 +193,20 @@
             </div>
 
         </div>
+
     </header>
 
 
+    <!-- ============================= -->
+    <!-- CONTENIDO PRINCIPAL -->
+    <!-- ============================= -->
 
-    <!-- HERO -->
     <main>
+
+
+        <!-- ============================= -->
+        <!-- HERO / INICIO -->
+        <!-- ============================= -->
 
         <section
             id="inicio"
@@ -204,29 +217,36 @@
 
                 <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
+
+                    <!-- TEXTO -->
                     <div>
 
                         <span
                             class="inline-block bg-rose-light text-rose-dark font-semibold text-sm px-4 py-2 rounded-full mb-5"
                         >
-                            Dulces momentos, hechos para ti
+                            Pasteles y bocados para cada ocasión
                         </span>
+
 
                         <h1
                             class="text-4xl sm:text-5xl lg:text-6xl font-bold text-chocolate leading-tight mb-6"
                         >
                             El sabor perfecto para
                             <span class="text-rose-dark">
-                                cada ocasión.
+                                cada momento.
                             </span>
                         </h1>
+
 
                         <p
                             class="text-[var(--color-muted)] text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
                         >
-                            Encuentra pasteles, bocados y productos preparados
-                            para cumpleaños, celebraciones y momentos especiales.
+                            Descubre nuestros pasteles, bocados y productos
+                            especiales. Encuentra lo que necesitas para tus
+                            celebraciones y realiza tus pedidos de manera
+                            sencilla.
                         </p>
+
 
                         <div class="flex flex-col sm:flex-row gap-3">
 
@@ -249,7 +269,7 @@
                     </div>
 
 
-                    <!-- ILUSTRACIÓN -->
+                    <!-- IMAGEN / PRESENTACIÓN -->
                     <div class="flex justify-center">
 
                         <div
@@ -270,7 +290,7 @@
                                 </p>
 
                                 <p class="text-[var(--color-muted)] mt-1">
-                                    Hecho con cariño
+                                    Dulces momentos para compartir
                                 </p>
 
                             </div>
@@ -286,20 +306,24 @@
         </section>
 
 
-
+        <!-- ============================= -->
         <!-- CATEGORÍAS -->
+        <!-- ============================= -->
+
         <section class="py-14 bg-cream-dark">
 
             <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
                 <div class="text-center mb-10">
 
-                    <p class="text-rose-dark font-semibold text-sm uppercase tracking-wide">
-                        Encuentra lo que buscas
+                    <p
+                        class="text-rose-dark font-semibold text-sm uppercase tracking-wide"
+                    >
+                        Explora nuestros productos
                     </p>
 
                     <h2 class="section-title mt-2">
-                        Nuestras categorías
+                        Categorías
                     </h2>
 
                 </div>
@@ -307,10 +331,13 @@
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
 
+
+                    <!-- CATEGORÍA 1 -->
                     <a
                         href="#catalogo"
                         class="bg-white rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition"
                     >
+
                         <div class="text-4xl mb-3">
                             🎂
                         </div>
@@ -322,13 +349,16 @@
                         <p class="text-sm text-[var(--color-muted)] mt-1">
                             Para celebrar
                         </p>
+
                     </a>
 
 
+                    <!-- CATEGORÍA 2 -->
                     <a
                         href="#catalogo"
                         class="bg-white rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition"
                     >
+
                         <div class="text-4xl mb-3">
                             🧁
                         </div>
@@ -340,13 +370,16 @@
                         <p class="text-sm text-[var(--color-muted)] mt-1">
                             Pequeños y deliciosos
                         </p>
+
                     </a>
 
 
+                    <!-- CATEGORÍA 3 -->
                     <a
                         href="#catalogo"
                         class="bg-white rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition"
                     >
+
                         <div class="text-4xl mb-3">
                             🍪
                         </div>
@@ -358,13 +391,16 @@
                         <p class="text-sm text-[var(--color-muted)] mt-1">
                             Para compartir
                         </p>
+
                     </a>
 
 
+                    <!-- CATEGORÍA 4 -->
                     <a
                         href="#catalogo"
                         class="bg-white rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition"
                     >
+
                         <div class="text-4xl mb-3">
                             🎁
                         </div>
@@ -374,8 +410,9 @@
                         </h3>
 
                         <p class="text-sm text-[var(--color-muted)] mt-1">
-                            Para sorprender
+                            Para regalar
                         </p>
+
                     </a>
 
                 </div>
@@ -385,8 +422,10 @@
         </section>
 
 
-
+        <!-- ============================= -->
         <!-- CATÁLOGO -->
+        <!-- ============================= -->
+
         <section
             id="catalogo"
             class="py-16 sm:py-20"
@@ -394,11 +433,14 @@
 
             <div class="max-w-6xl mx-auto px-4 sm:px-6">
 
+
                 <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
 
                     <div>
 
-                        <p class="text-rose-dark font-semibold text-sm uppercase tracking-wide">
+                        <p
+                            class="text-rose-dark font-semibold text-sm uppercase tracking-wide"
+                        >
                             Nuestros productos
                         </p>
 
@@ -407,6 +449,7 @@
                         </h2>
 
                     </div>
+
 
                     <a
                         href="login.html"
@@ -422,6 +465,7 @@
                     id="products-grid"
                     class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
                 >
+
 
                     <!-- PRODUCTO 1 -->
                     <article class="product-card">
@@ -656,7 +700,7 @@
                             </h3>
 
                             <p class="product-description">
-                                Una selección de productos para regalar.
+                                Selección de productos para regalar o compartir.
                             </p>
 
                             <div class="flex items-center justify-between mt-5">
@@ -687,8 +731,10 @@
         </section>
 
 
-
+        <!-- ============================= -->
         <!-- RESEÑAS -->
+        <!-- ============================= -->
+
         <section
             id="resenas"
             class="py-16 bg-cream-dark"
@@ -698,7 +744,9 @@
 
                 <div class="text-center mb-10">
 
-                    <p class="text-rose-dark font-semibold text-sm uppercase tracking-wide">
+                    <p
+                        class="text-rose-dark font-semibold text-sm uppercase tracking-wide"
+                    >
                         Opiniones
                     </p>
 
@@ -711,6 +759,8 @@
 
                 <div class="grid md:grid-cols-3 gap-6">
 
+
+                    <!-- RESEÑA 1 -->
                     <article class="bg-white rounded-2xl p-6 shadow-sm">
 
                         <div class="text-rose-dark mb-3">
@@ -728,6 +778,7 @@
                     </article>
 
 
+                    <!-- RESEÑA 2 -->
                     <article class="bg-white rounded-2xl p-6 shadow-sm">
 
                         <div class="text-rose-dark mb-3">
@@ -745,6 +796,7 @@
                     </article>
 
 
+                    <!-- RESEÑA 3 -->
                     <article class="bg-white rounded-2xl p-6 shadow-sm">
 
                         <div class="text-rose-dark mb-3">
@@ -768,15 +820,20 @@
         </section>
 
 
+        <!-- ============================= -->
+        <!-- LLAMADO A LA ACCIÓN -->
+        <!-- ============================= -->
 
-        <!-- LLAMADO A INICIAR SESIÓN -->
         <section class="py-16 sm:py-20">
 
             <div class="max-w-5xl mx-auto px-4 sm:px-6">
 
                 <div class="bg-chocolate rounded-3xl p-8 sm:p-12 text-center text-white">
 
-                    <div class="text-5xl mb-5">
+                    <div
+                        class="text-5xl mb-5"
+                        aria-hidden="true"
+                    >
                         🍰
                     </div>
 
@@ -785,7 +842,8 @@
                     </h2>
 
                     <p class="text-white/80 max-w-2xl mx-auto mb-7">
-                        Inicia sesión en PastelApp para acceder a tu cuenta y continuar con tus pedidos.
+                        Inicia sesión en PastelApp para acceder a tu cuenta,
+                        realizar pedidos y consultar tu información.
                     </p>
 
                     <a
@@ -804,8 +862,10 @@
     </main>
 
 
-
+    <!-- ============================= -->
     <!-- FOOTER -->
+    <!-- ============================= -->
+
     <footer class="site-footer">
 
         <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
@@ -836,8 +896,10 @@
     </footer>
 
 
-
+    <!-- ============================= -->
     <!-- CARRITO -->
+    <!-- ============================= -->
+
     <div
         id="cart-overlay"
         class="fixed inset-0 bg-black/40 z-40 hidden"
@@ -852,6 +914,8 @@
 
         <div class="h-full flex flex-col">
 
+
+            <!-- CABECERA DEL CARRITO -->
             <div class="flex items-center justify-between p-5 border-b">
 
                 <h2 class="text-xl font-bold text-chocolate">
@@ -870,6 +934,7 @@
             </div>
 
 
+            <!-- PRODUCTOS -->
             <div
                 id="cart-items"
                 class="flex-1 overflow-y-auto p-5"
@@ -885,6 +950,7 @@
             </div>
 
 
+            <!-- TOTAL -->
             <div class="border-t p-5">
 
                 <div class="flex justify-between items-center mb-4">
@@ -917,8 +983,10 @@
     </aside>
 
 
+    <!-- ============================= -->
+    <!-- JAVASCRIPT DEL INICIO -->
+    <!-- ============================= -->
 
-    <!-- JAVASCRIPT PRINCIPAL -->
     <script src="js/js/scripts.js"></script>
 
 </body>
