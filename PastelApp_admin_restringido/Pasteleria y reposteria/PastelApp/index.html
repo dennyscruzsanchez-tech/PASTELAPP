@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PastelApp — Endulza tus momentos</title>
+  <meta name="description" content="PastelApp — Interfaz demostrativa de pastelería. Proyecto académico Sesión 2." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["Poppins", "system-ui", "sans-serif"] },
+          colors: {
+            rose: { soft: "#e891a8", dark: "#d46b88", light: "#fce8ee" },
+            cream: { DEFAULT: "#fff9f5", dark: "#f5ebe3" },
+            chocolate: { DEFAULT: "#5c3d2e", soft: "#8b6355" },
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="font-sans antialiased">
+  <!-- Banner académico -->
+  <div class="bg-chocolate text-white text-center text-xs sm:text-sm py-2 px-4">
+    Proyecto académico — Interfaz demostrativa · Sesión 2
+  </div>
+
+  <!-- Header / Navbar -->
+  <header class="site-header">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16 md:h-[4.25rem]">
+        <a href="index.html" class="brand-logo text-xl sm:text-2xl flex items-center gap-1.5" aria-label="PastelApp inicio">
+          <span aria-hidden="true">🍰</span> PastelApp
+        </a>
+
+        <nav class="hidden md:flex items-center gap-6" aria-label="Navegación principal">
+          <a href="index.html" class="nav-link active">Inicio</a>
+          <a href="cliente.html#catalogo" class="nav-link">Catálogo</a>
+          <a href="cliente.html#reseñas" class="nav-link">Reseñas</a>
+          <div id="auth-nav-desktop" class="flex items-center gap-4">
+            <button type="button" class="nav-link" data-open-login>Iniciar sesión</button>
+          </div>
+          <button type="button" class="relative nav-link flex items-center gap-1" data-open-cart aria-label="Abrir carrito">
+            🛒 Carrito
+            <span class="cart-badge" data-cart-count hidden>0</span>
+          </button>
+        </nav>
+
+        <div class="flex items-center gap-2 md:hidden">
+          <button type="button" class="relative p-2 rounded-full hover:bg-rose-light" data-open-cart aria-label="Abrir carrito">
+            🛒
+            <span class="cart-badge" data-cart-count hidden>0</span>
+          </button>
+          <button
+            type="button"
+            id="menu-toggle"
+            class="p-2 rounded-lg border border-[var(--color-border)] bg-white"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Abrir menú"
+          >
+            <svg class="w-6 h-6 text-chocolate" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="mobile-menu md:hidden border-t border-[var(--color-border)]">
+        <nav class="flex flex-col py-3 gap-1" aria-label="Menú móvil">
+          <a href="index.html" class="px-2 py-2.5 rounded-lg font-medium text-chocolate bg-rose-light">Inicio</a>
+          <a href="cliente.html#catalogo" class="px-2 py-2.5 rounded-lg text-[var(--color-muted)] hover:bg-cream-dark">Catálogo</a>
+          <a href="cliente.html#reseñas" class="px-2 py-2.5 rounded-lg text-[var(--color-muted)] hover:bg-cream-dark">Reseñas</a>
+          <div id="auth-nav-mobile">
+            <button type="button" class="px-2 py-2.5 rounded-lg text-left text-[var(--color-muted)] hover:bg-cream-dark w-full" data-open-login>Iniciar sesión</button>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero-section" aria-labelledby="hero-title">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-20">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+          <div class="animate-in text-center lg:text-left">
+            <p class="demo-badge mb-4">Interfaz de demostración</p>
+            <h1 id="hero-title" class="section-title text-4xl sm:text-5xl lg:text-[3.25rem] leading-tight mb-4">
+              Endulza tus momentos
+            </h1>
+            <p class="text-[var(--color-muted)] text-base sm:text-lg max-w-md mx-auto lg:mx-0 mb-8">
+              Encuentra pasteles y deliciosos bocaditos para cada ocasión.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+              <a href="cliente.html#catalogo" class="btn-primary">Ver catálogo</a>
+              <button type="button" class="btn-secondary" data-open-cart>Realizar pedido</button>
+            </div>
+          </div>
+          <div class="hero-visual" role="img" aria-label="Ilustración decorativa de pastel">🍰</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categorías -->
+    <section class="py-14 sm:py-16" aria-labelledby="cat-title">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10">
+          <h2 id="cat-title" class="section-title text-2xl sm:text-3xl mb-2">Categorías</h2>
+          <p class="text-[var(--color-muted)] text-sm sm:text-base">Explora por tipo de producto (vista visual).</p>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+          <button type="button" class="card-category" data-goto-category="pasteles">
+            <span class="text-4xl block mb-2" aria-hidden="true">🎂</span>
+            <span class="font-semibold text-chocolate text-sm sm:text-base">Pasteles</span>
+          </button>
+          <button type="button" class="card-category" data-goto-category="cupcakes">
+            <span class="text-4xl block mb-2" aria-hidden="true">🧁</span>
+            <span class="font-semibold text-chocolate text-sm sm:text-base">Cupcakes</span>
+          </button>
+          <button type="button" class="card-category" data-goto-category="bocaditos">
+            <span class="text-4xl block mb-2" aria-hidden="true">🍪</span>
+            <span class="font-semibold text-chocolate text-sm sm:text-base">Bocaditos</span>
+          </button>
+          <button type="button" class="card-category" data-goto-category="especiales">
+            <span class="text-4xl block mb-2" aria-hidden="true">🎉</span>
+            <span class="font-semibold text-chocolate text-sm sm:text-base">Ocasiones especiales</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Productos destacados -->
+    <section class="py-14 sm:py-16 bg-white/60" aria-labelledby="feat-title">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+          <div>
+            <h2 id="feat-title" class="section-title text-2xl sm:text-3xl mb-2">Productos destacados</h2>
+            <p class="text-[var(--color-muted)] text-sm sm:text-base">
+              Ejemplos de catálogo · Precios de demostración (S/ --)
+            </p>
+          </div>
+          <a href="cliente.html#catalogo" class="btn-ghost self-start sm:self-auto">Ver todo el catálogo</a>
+        </div>
+        <div id="featured-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+      </div>
+    </section>
+
+    <!-- Reseñas preview -->
+    <section class="py-14 sm:py-16" aria-labelledby="rev-preview-title">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-10">
+          <h2 id="rev-preview-title" class="section-title text-2xl sm:text-3xl mb-2">Lo que dicen nuestros clientes</h2>
+          <p class="text-[var(--color-muted)] text-sm">Comentarios ficticios para la maqueta UI/UX.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <article class="card-review">
+            <p class="stars mb-2" aria-label="5 estrellas">⭐⭐⭐⭐⭐</p>
+            <p class="text-sm text-[var(--color-muted)] mb-4">"El pedido llegó muy bien presentado."</p>
+            <p class="font-semibold text-chocolate text-sm">— Ana Demo</p>
+          </article>
+          <article class="card-review">
+            <p class="stars mb-2" aria-label="5 estrellas">⭐⭐⭐⭐⭐</p>
+            <p class="text-sm text-[var(--color-muted)] mb-4">"Interfaz clara y fácil de usar. Ideal para practicar."</p>
+            <p class="font-semibold text-chocolate text-sm">— Luis Ejemplo</p>
+          </article>
+          <article class="card-review">
+            <p class="stars mb-2" aria-label="4 estrellas">⭐⭐⭐⭐☆</p>
+            <p class="text-sm text-[var(--color-muted)] mb-4">"Me gustó el diseño del catálogo en móvil."</p>
+            <p class="font-semibold text-chocolate text-sm">— Sofía Muestra</p>
+          </article>
+        </div>
+        <div class="text-center mt-8">
+          <a href="cliente.html#reseñas" class="btn-secondary">Ver muro de reseñas</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA sesión -->
+    <section class="py-12 bg-rose-light/80">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+        <h2 class="section-title text-xl sm:text-2xl mb-2">¿Ya tienes cuenta?</h2>
+        <p class="text-[var(--color-muted)] text-sm mb-5">
+          Inicia sesión: un cliente va a la tienda y un administrador al panel de control.
+        </p>
+        <button type="button" class="btn-primary" data-open-login>Iniciar sesión</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+        <div>
+          <p class="text-xl font-bold text-white mb-2">🍰 PastelApp</p>
+          <p class="text-sm text-white/70 max-w-xs">
+            Una experiencia sencilla para descubrir y solicitar productos de pastelería.
+          </p>
+        </div>
+        <div>
+          <p class="font-semibold text-white mb-3">Enlaces</p>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="cliente.html#catalogo">Catálogo</a></li>
+            <li><a href="cliente.html#reseñas">Reseñas</a></li>
+            <li><a href="cliente.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-semibold text-white mb-3">Acceso</p>
+          <ul class="space-y-2 text-sm">
+            <li><a href="cliente.html">Tienda pública</a></li>
+            <li><button type="button" class="hover:text-white text-left" data-open-login>Iniciar sesión</button></li>
+          </ul>
+        </div>
+      </div>
+      <p class="text-center text-xs text-white/50 border-t border-white/10 pt-6">
+        Proyecto académico — Interfaz demostrativa.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Overlay carrito -->
+  <div id="cart-overlay" class="overlay" aria-hidden="true"></div>
+
+  <!-- Drawer carrito -->
+  <aside id="cart-drawer" class="cart-drawer" aria-hidden="true" aria-label="Carrito de compras">
+    <div class="flex items-center justify-between p-4 border-b border-[var(--color-border)]">
+      <h2 class="font-bold text-chocolate text-lg">🛒 Carrito</h2>
+      <button type="button" class="p-2 rounded-lg hover:bg-cream-dark" data-close-cart aria-label="Cerrar carrito">✕</button>
+    </div>
+    <div class="flex-1 overflow-y-auto px-4">
+      <p id="cart-empty" class="empty-state">Tu carrito está vacío.<br /><span class="text-xs">Agrega productos del catálogo.</span></p>
+      <div id="cart-items"></div>
+    </div>
+    <div id="cart-footer" class="p-4 border-t border-[var(--color-border)] space-y-3" hidden>
+      <div class="flex justify-between font-semibold text-chocolate">
+        <span>Total (demo)</span>
+        <span id="cart-total">S/ --</span>
+      </div>
+      <p class="text-xs text-[var(--color-muted)]">Precios ilustrativos — no son reales.</p>
+      <button type="button" id="btn-continue-shopping" class="btn-secondary w-full">Continuar comprando</button>
+      <button type="button" id="btn-checkout" class="btn-primary w-full">Realizar pedido</button>
+    </div>
+  </aside>
+
+  <!-- Modal pedido -->
+  <div id="order-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="order-modal-title" aria-hidden="true">
+    <div class="modal__dialog p-5 sm:p-6">
+      <div class="flex items-start justify-between mb-4">
+        <div>
+          <h2 id="order-modal-title" class="section-title text-xl">Realizar pedido</h2>
+          <p class="text-xs text-[var(--color-muted)] mt-1">Simulación frontend — no se envía a un servidor.</p>
+        </div>
+        <button type="button" class="p-2 rounded-lg hover:bg-cream-dark" data-close-modal="order-modal" aria-label="Cerrar">✕</button>
+      </div>
+      <form id="order-form" class="space-y-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="form-label" for="order-name">Nombre</label>
+            <input class="form-input" id="order-name" name="nombre" type="text" required placeholder="Ej. María" />
+          </div>
+          <div>
+            <label class="form-label" for="order-lastname">Apellido</label>
+            <input class="form-input" id="order-lastname" name="apellido" type="text" required placeholder="Ej. Pérez" />
+          </div>
+        </div>
+        <div>
+          <label class="form-label" for="order-phone">Teléfono</label>
+          <input class="form-input" id="order-phone" name="telefono" type="tel" required placeholder="000-000-000" />
+        </div>
+        <div>
+          <label class="form-label" for="order-address">Dirección</label>
+          <input class="form-input" id="order-address" name="direccion" type="text" required placeholder="Dirección de ejemplo" />
+        </div>
+        <div>
+          <label class="form-label" for="order-ref">Referencia</label>
+          <input class="form-input" id="order-ref" name="referencia" type="text" placeholder="Cerca de..." />
+        </div>
+        <div>
+          <label class="form-label" for="order-delivery">Método de entrega</label>
+          <select class="form-select" id="order-delivery" name="entrega" required>
+            <option value="">Seleccionar...</option>
+            <option value="delivery">Delivery</option>
+            <option value="recojo">Recojo en tienda</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label" for="order-notes">Observaciones</label>
+          <textarea class="form-textarea" id="order-notes" name="observaciones" placeholder="Notas adicionales (opcional)"></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full mt-2">Confirmar pedido</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal éxito pedido -->
+  <div id="order-success-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="success-title" aria-hidden="true">
+    <div class="modal__dialog p-6 text-center">
+      <p class="text-5xl mb-3" aria-hidden="true">✅</p>
+      <h2 id="success-title" class="section-title text-xl mb-2">Pedido registrado correctamente</h2>
+      <p class="text-sm text-[var(--color-muted)] mb-6">
+        Esto es una simulación de la interfaz. No se ha procesado un pedido real.
+      </p>
+      <button type="button" class="btn-primary" data-close-modal="order-success-modal">Entendido</button>
+    </div>
+  </div>
+
+  <!-- Modal login simulado -->
+  <div id="login-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="login-title" aria-hidden="true">
+    <div class="modal__dialog p-5 sm:p-6">
+      <div class="flex items-start justify-between mb-4">
+        <div>
+          <h2 id="login-title" class="section-title text-xl">Iniciar sesión</h2>
+          <p class="text-xs text-[var(--color-muted)] mt-1">Simulación frontend — según la cuenta te lleva a una vista distinta.</p>
+        </div>
+        <button type="button" class="p-2 rounded-lg hover:bg-cream-dark" data-close-modal="login-modal" aria-label="Cerrar">✕</button>
+      </div>
+      <form id="login-form" class="space-y-3">
+        <div>
+          <label class="form-label" for="login-email">Correo</label>
+          <input class="form-input" id="login-email" type="email" required placeholder="cliente@pastelapp.demo" autocomplete="username" />
+        </div>
+        <div>
+          <label class="form-label" for="login-pass">Contraseña</label>
+          <input class="form-input" id="login-pass" type="password" required placeholder="••••••••" autocomplete="current-password" />
+        </div>
+        <p id="login-error" class="text-sm text-red-600 hidden" role="alert"></p>
+        <button type="submit" class="btn-primary w-full">Entrar</button>
+        <div class="rounded-xl bg-cream-dark/80 p-3 text-xs text-[var(--color-muted)] space-y-1.5">
+          <p class="font-semibold text-chocolate">Cuentas de demostración:</p>
+          <p><strong>Cliente:</strong> cliente@pastelapp.demo · 123456</p>
+          <p><strong>Admin:</strong> admin@pastelapp.demo · admin123</p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/scripts.js"></script>
+</body>
+</html>

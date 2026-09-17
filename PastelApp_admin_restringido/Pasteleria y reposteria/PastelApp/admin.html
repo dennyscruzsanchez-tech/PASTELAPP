@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PastelApp — Dashboard Administración</title>
+  <meta name="description" content="Panel de administración demostrativo — PastelApp Sesión 2." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["Poppins", "system-ui", "sans-serif"] },
+          colors: {
+            rose: { soft: "#e891a8", dark: "#d46b88", light: "#fce8ee" },
+            cream: { DEFAULT: "#fff9f5", dark: "#f5ebe3" },
+            chocolate: { DEFAULT: "#5c3d2e", soft: "#8b6355" },
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="font-sans antialiased bg-cream">
+  <div class="admin-layout">
+    <!-- Overlay móvil sidebar -->
+    <div id="admin-overlay" class="admin-overlay lg:hidden" aria-hidden="true"></div>
+
+    <!-- Sidebar -->
+    <aside id="admin-sidebar" class="admin-sidebar" aria-label="Menú de administración">
+      <div class="p-5 border-b border-white/10 flex items-center justify-between">
+        <a href="index.html" class="text-white font-bold text-lg flex items-center gap-1.5">
+          <span aria-hidden="true">🍰</span> PastelApp
+        </a>
+        <button type="button" class="lg:hidden p-1 text-white/80" data-close-admin-sidebar aria-label="Cerrar menú">✕</button>
+      </div>
+
+      <nav class="flex-1 p-3 space-y-1 overflow-y-auto" aria-label="Secciones del dashboard">
+        <button type="button" class="admin-sidebar__link active" data-admin-section="dashboard">
+          <span aria-hidden="true">📊</span> Dashboard
+        </button>
+        <button type="button" class="admin-sidebar__link" data-admin-section="pedidos">
+          <span aria-hidden="true">📦</span> Pedidos
+        </button>
+        <button type="button" class="admin-sidebar__link" data-admin-section="productos">
+          <span aria-hidden="true">🧁</span> Productos
+        </button>
+        <button type="button" class="admin-sidebar__link" data-admin-section="clientes">
+          <span aria-hidden="true">👥</span> Clientes
+        </button>
+        <button type="button" class="admin-sidebar__link" data-admin-section="reseñas">
+          <span aria-hidden="true">⭐</span> Reseñas
+        </button>
+        <button type="button" class="admin-sidebar__link" data-admin-section="configuracion">
+          <span aria-hidden="true">⚙️</span> Configuración
+        </button>
+      </nav>
+
+      <div class="p-4 border-t border-white/10 space-y-2">
+        <p class="text-[0.65rem] text-white/40 uppercase tracking-wide px-1">Sesión demo</p>
+        <p id="admin-user-label" class="text-xs text-white/70 px-1 truncate">Admin</p>
+        <a href="cliente.html" class="admin-sidebar__link">
+          <span aria-hidden="true">🏪</span> Ver tienda
+        </a>
+        <button type="button" class="admin-sidebar__link" data-logout>
+          <span aria-hidden="true">🚪</span> Cerrar sesión
+        </button>
+      </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <div class="admin-main min-h-screen flex flex-col">
+      <!-- Top bar -->
+      <header class="sticky top-0 z-30 bg-cream/95 backdrop-blur border-b border-[var(--color-border)] px-4 sm:px-6 py-3 flex items-center gap-3">
+        <button
+          type="button"
+          id="admin-menu-toggle"
+          class="lg:hidden p-2 rounded-lg border border-[var(--color-border)] bg-white"
+          aria-label="Abrir menú lateral"
+        >
+          <svg class="w-5 h-5 text-chocolate" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        <div class="flex-1 min-w-0">
+          <h1 id="admin-page-title" class="section-title text-lg sm:text-xl truncate">Dashboard</h1>
+          <p class="text-xs text-[var(--color-muted)] truncate">Panel administrativo · Datos demostrativos</p>
+        </div>
+        <span id="admin-session-badge" class="demo-badge hidden sm:inline-flex">Sesión admin (demo)</span>
+      </header>
+
+      <div class="flex-1 p-4 sm:p-6 max-w-6xl w-full mx-auto">
+        <!-- ========== DASHBOARD ========== -->
+        <section id="section-dashboard" class="admin-section active" aria-labelledby="dash-heading">
+          <div class="mb-6">
+            <h2 id="dash-heading" class="sr-only">Resumen</h2>
+            <p class="text-[var(--color-muted)] text-sm">Resumen general de la tienda</p>
+          </div>
+
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
+            <article class="stat-card">
+              <p class="text-xs sm:text-sm text-[var(--color-muted)] mb-1">Pedidos totales</p>
+              <p class="stat-card__value">12</p>
+              <p class="text-[0.65rem] text-[var(--color-muted)] mt-1">Dato demo</p>
+            </article>
+            <article class="stat-card">
+              <p class="text-xs sm:text-sm text-[var(--color-muted)] mb-1">Pendientes</p>
+              <p class="stat-card__value text-amber-700">5</p>
+              <p class="text-[0.65rem] text-[var(--color-muted)] mt-1">Dato demo</p>
+            </article>
+            <article class="stat-card">
+              <p class="text-xs sm:text-sm text-[var(--color-muted)] mb-1">En preparación</p>
+              <p class="stat-card__value text-orange-600">3</p>
+              <p class="text-[0.65rem] text-[var(--color-muted)] mt-1">Dato demo</p>
+            </article>
+            <article class="stat-card">
+              <p class="text-xs sm:text-sm text-[var(--color-muted)] mb-1">Entregados</p>
+              <p class="stat-card__value text-emerald-700">4</p>
+              <p class="text-[0.65rem] text-[var(--color-muted)] mt-1">Dato demo</p>
+            </article>
+          </div>
+
+          <div class="bg-white rounded-[var(--radius)] border border-[var(--color-border)] p-5 shadow-[var(--shadow-soft)]">
+            <h3 class="font-semibold text-chocolate mb-2">Accesos rápidos</h3>
+            <p class="text-sm text-[var(--color-muted)] mb-4">Navega a las secciones principales del panel.</p>
+            <div class="flex flex-wrap gap-2">
+              <button type="button" class="btn-ghost btn-sm" data-admin-section="pedidos">Ver pedidos</button>
+              <button type="button" class="btn-ghost btn-sm" data-admin-section="productos">Gestionar productos</button>
+              <button type="button" class="btn-ghost btn-sm" data-admin-section="reseñas">Revisar reseñas</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========== PEDIDOS ========== -->
+        <section id="section-pedidos" class="admin-section" aria-labelledby="orders-heading">
+          <div class="mb-6">
+            <h2 id="orders-heading" class="section-title text-xl sm:text-2xl mb-1">Control de pedidos</h2>
+            <p class="text-sm text-[var(--color-muted)]">
+              Tabla demostrativa · Pulsa “Ver” para detalle y cambio de estado (solo frontend).
+            </p>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-4 text-xs">
+            <span class="badge badge--pendiente">🟡 Pendiente</span>
+            <span class="badge badge--confirmado">🔵 Confirmado</span>
+            <span class="badge badge--preparacion">🟠 En preparación</span>
+            <span class="badge badge--listo">🟢 Listo</span>
+            <span class="badge badge--entregado">⚫ Entregado</span>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Cliente</th>
+                  <th scope="col">Producto</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Acción</th>
+                </tr>
+              </thead>
+              <tbody id="orders-tbody">
+                <!-- Rellenado por JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ========== PRODUCTOS ========== -->
+        <section id="section-productos" class="admin-section" aria-labelledby="products-admin-heading">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+            <div>
+              <h2 id="products-admin-heading" class="section-title text-xl sm:text-2xl mb-1">Productos</h2>
+              <p class="text-sm text-[var(--color-muted)]">Catálogo administrativo (datos ficticios).</p>
+            </div>
+            <button type="button" id="btn-new-product" class="btn-primary self-start">+ Nuevo producto</button>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Categoría</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Disponibilidad</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-medium" data-label="Nombre">Pastel de chocolate</td>
+                  <td data-label="Categoría">Pasteles</td>
+                  <td data-label="Precio">S/ --</td>
+                  <td data-label="Disponibilidad"><span class="badge badge--disponible">Disponible</span></td>
+                  <td data-label="Acciones" class="space-x-1">
+                    <button type="button" class="btn-ghost btn-sm" data-edit-product>Editar</button>
+                    <button type="button" class="btn-danger btn-sm" data-delete-product>Eliminar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-medium" data-label="Nombre">Cupcakes surtidos</td>
+                  <td data-label="Categoría">Cupcakes</td>
+                  <td data-label="Precio">S/ --</td>
+                  <td data-label="Disponibilidad"><span class="badge badge--disponible">Disponible</span></td>
+                  <td data-label="Acciones" class="space-x-1">
+                    <button type="button" class="btn-ghost btn-sm" data-edit-product>Editar</button>
+                    <button type="button" class="btn-danger btn-sm" data-delete-product>Eliminar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-medium" data-label="Nombre">Bocaditos dulces</td>
+                  <td data-label="Categoría">Bocaditos</td>
+                  <td data-label="Precio">S/ --</td>
+                  <td data-label="Disponibilidad"><span class="badge badge--disponible">Disponible</span></td>
+                  <td data-label="Acciones" class="space-x-1">
+                    <button type="button" class="btn-ghost btn-sm" data-edit-product>Editar</button>
+                    <button type="button" class="btn-danger btn-sm" data-delete-product>Eliminar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-medium" data-label="Nombre">Torta de cumpleaños</td>
+                  <td data-label="Categoría">Especiales</td>
+                  <td data-label="Precio">S/ --</td>
+                  <td data-label="Disponibilidad"><span class="badge badge--agotado">Agotado</span></td>
+                  <td data-label="Acciones" class="space-x-1">
+                    <button type="button" class="btn-ghost btn-sm" data-edit-product>Editar</button>
+                    <button type="button" class="btn-danger btn-sm" data-delete-product>Eliminar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-medium" data-label="Nombre">Mini postres</td>
+                  <td data-label="Categoría">Bocaditos</td>
+                  <td data-label="Precio">S/ --</td>
+                  <td data-label="Disponibilidad"><span class="badge badge--disponible">Disponible</span></td>
+                  <td data-label="Acciones" class="space-x-1">
+                    <button type="button" class="btn-ghost btn-sm" data-edit-product>Editar</button>
+                    <button type="button" class="btn-danger btn-sm" data-delete-product>Eliminar</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ========== CLIENTES ========== -->
+        <section id="section-clientes" class="admin-section" aria-labelledby="clients-heading">
+          <div class="mb-6">
+            <h2 id="clients-heading" class="section-title text-xl sm:text-2xl mb-1">Clientes</h2>
+            <p class="text-sm text-[var(--color-muted)]">Listado ficticio para demostrar la interfaz.</p>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">Cliente</th>
+                  <th scope="col">Teléfono</th>
+                  <th scope="col">Pedidos</th>
+                  <th scope="col">Último pedido</th>
+                  <th scope="col">Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-medium" data-label="Cliente">Cliente Demo A</td>
+                  <td data-label="Teléfono">000-000-001</td>
+                  <td data-label="Pedidos">3</td>
+                  <td data-label="Último pedido">--/--/----</td>
+                  <td data-label="Estado"><span class="badge badge--disponible">Activo</span></td>
+                </tr>
+                <tr>
+                  <td class="font-medium" data-label="Cliente">Cliente Demo B</td>
+                  <td data-label="Teléfono">000-000-002</td>
+                  <td data-label="Pedidos">1</td>
+                  <td data-label="Último pedido">--/--/----</td>
+                  <td data-label="Estado"><span class="badge badge--disponible">Activo</span></td>
+                </tr>
+                <tr>
+                  <td class="font-medium" data-label="Cliente">Cliente Demo C</td>
+                  <td data-label="Teléfono">000-000-003</td>
+                  <td data-label="Pedidos">5</td>
+                  <td data-label="Último pedido">--/--/----</td>
+                  <td data-label="Estado"><span class="badge badge--disponible">Activo</span></td>
+                </tr>
+                <tr>
+                  <td class="font-medium" data-label="Cliente">Cliente Demo D</td>
+                  <td data-label="Teléfono">000-000-004</td>
+                  <td data-label="Pedidos">0</td>
+                  <td data-label="Último pedido">—</td>
+                  <td data-label="Estado"><span class="badge badge--oculta">Inactivo</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ========== RESEÑAS ========== -->
+        <section id="section-reseñas" class="admin-section" aria-labelledby="reviews-admin-heading">
+          <div class="mb-6">
+            <h2 id="reviews-admin-heading" class="section-title text-xl sm:text-2xl mb-1">Gestión de reseñas</h2>
+            <p class="text-sm text-[var(--color-muted)]">Aprobar u ocultar — simulación visual.</p>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">Cliente</th>
+                  <th scope="col">Calificación</th>
+                  <th scope="col">Comentario</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-medium" data-label="Cliente">Ana Demo</td>
+                  <td data-label="Calificación"><span class="stars" aria-label="5 estrellas">⭐⭐⭐⭐⭐</span></td>
+                  <td data-label="Comentario" class="max-w-[200px] truncate">El pedido llegó muy bien presentado.</td>
+                  <td data-label="Estado" data-review-status><span class="badge badge--pendiente-review">Pendiente</span></td>
+                  <td data-label="Acción" class="space-x-1 whitespace-nowrap">
+                    <button type="button" class="btn-ghost btn-sm" data-approve-review>Aprobar</button>
+                    <button type="button" class="btn-danger btn-sm" data-hide-review>Ocultar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-medium" data-label="Cliente">Carlos Ejemplo</td>
+                  <td data-label="Calificación"><span class="stars" aria-label="5 estrellas">⭐⭐⭐⭐⭐</span></td>
+                  <td data-label="Comentario" class="max-w-[200px] truncate">El catálogo se ve muy claro en el celular.</td>
+                  <td data-label="Estado" data-review-status><span class="badge badge--aprobada">Aprobada</span></td>
+                  <td data-label="Acción" class="space-x-1 whitespace-nowrap">
+                    <button type="button" class="btn-ghost btn-sm" data-approve-review>Aprobar</button>
+                    <button type="button" class="btn-danger btn-sm" data-hide-review>Ocultar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-medium" data-label="Cliente">María Muestra</td>
+                  <td data-label="Calificación"><span class="stars" aria-label="4 estrellas">⭐⭐⭐⭐☆</span></td>
+                  <td data-label="Comentario" class="max-w-[200px] truncate">Me gustó poder filtrar por categorías.</td>
+                  <td data-label="Estado" data-review-status><span class="badge badge--pendiente-review">Pendiente</span></td>
+                  <td data-label="Acción" class="space-x-1 whitespace-nowrap">
+                    <button type="button" class="btn-ghost btn-sm" data-approve-review>Aprobar</button>
+                    <button type="button" class="btn-danger btn-sm" data-hide-review>Ocultar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="font-medium" data-label="Cliente">José Prueba</td>
+                  <td data-label="Calificación"><span class="stars" aria-label="3 estrellas">⭐⭐⭐☆☆</span></td>
+                  <td data-label="Comentario" class="max-w-[200px] truncate">Comentario de ejemplo para moderar.</td>
+                  <td data-label="Estado" data-review-status><span class="badge badge--oculta">Oculta</span></td>
+                  <td data-label="Acción" class="space-x-1 whitespace-nowrap">
+                    <button type="button" class="btn-ghost btn-sm" data-approve-review>Aprobar</button>
+                    <button type="button" class="btn-danger btn-sm" data-hide-review>Ocultar</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ========== CONFIGURACIÓN ========== -->
+        <section id="section-configuracion" class="admin-section" aria-labelledby="config-heading">
+          <div class="mb-6">
+            <h2 id="config-heading" class="section-title text-xl sm:text-2xl mb-1">Configuración</h2>
+            <p class="text-sm text-[var(--color-muted)]">Opciones visuales de demostración.</p>
+          </div>
+
+          <div class="bg-white rounded-[var(--radius)] border border-[var(--color-border)] p-5 sm:p-6 shadow-[var(--shadow-soft)] max-w-lg space-y-4">
+            <div>
+              <label class="form-label" for="cfg-name">Nombre de la tienda</label>
+              <input class="form-input" id="cfg-name" type="text" value="PastelApp" readonly />
+            </div>
+            <div>
+              <label class="form-label" for="cfg-email">Correo de contacto (demo)</label>
+              <input class="form-input" id="cfg-email" type="email" value="contacto@pastelapp.demo" readonly />
+            </div>
+            <div>
+              <label class="form-label" for="cfg-note">Nota académica</label>
+              <textarea class="form-textarea" id="cfg-note" readonly>Esta pantalla es una maqueta. No hay guardado real ni backend.</textarea>
+            </div>
+            <button
+              type="button"
+              class="btn-primary"
+              onclick="showToast('Configuración no se guarda — solo maqueta', 'info')"
+            >
+              Guardar cambios
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <footer class="px-4 sm:px-6 py-4 text-center text-xs text-[var(--color-muted)] border-t border-[var(--color-border)]">
+        Proyecto académico — Interfaz demostrativa · PastelApp Sesión 2
+      </footer>
+    </div>
+  </div>
+
+  <!-- Modal detalle pedido -->
+  <div id="order-detail-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="order-detail-title" aria-hidden="true">
+    <div class="modal__dialog modal__dialog--lg p-5 sm:p-6">
+      <div class="flex items-start justify-between mb-4">
+        <div>
+          <h2 id="order-detail-title" class="section-title text-xl">Detalle del pedido</h2>
+          <p class="text-xs text-[var(--color-muted)] mt-1">Vista administrativa simulada</p>
+        </div>
+        <button type="button" class="p-2 rounded-lg hover:bg-cream-dark" data-close-modal="order-detail-modal" aria-label="Cerrar">✕</button>
+      </div>
+
+      <div id="order-detail-body" class="mb-5"></div>
+
+      <div class="border-t border-[var(--color-border)] pt-4 space-y-3">
+        <label class="form-label" for="order-status-select">Actualizar estado</label>
+        <select class="form-select" id="order-status-select">
+          <option value="Pendiente">Pendiente</option>
+          <option value="Confirmado">Confirmado</option>
+          <option value="En preparación">En preparación</option>
+          <option value="Listo">Listo</option>
+          <option value="Entregado">Entregado</option>
+        </select>
+        <button type="button" id="btn-update-status" class="btn-primary w-full sm:w-auto">Actualizar estado</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal producto -->
+  <div id="product-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="product-modal-title" aria-hidden="true">
+    <div class="modal__dialog p-5 sm:p-6">
+      <div class="flex items-start justify-between mb-4">
+        <div>
+          <h2 id="product-modal-title" class="section-title text-xl">Nuevo / Editar producto</h2>
+          <p class="text-xs text-[var(--color-muted)] mt-1">Formulario visual — sin base de datos.</p>
+        </div>
+        <button type="button" class="p-2 rounded-lg hover:bg-cream-dark" data-close-modal="product-modal" aria-label="Cerrar">✕</button>
+      </div>
+      <form id="product-form" class="space-y-3">
+        <div>
+          <label class="form-label" for="prod-name">Nombre</label>
+          <input class="form-input" id="prod-name" type="text" required placeholder="Nombre del producto" />
+        </div>
+        <div>
+          <label class="form-label" for="prod-category">Categoría</label>
+          <select class="form-select" id="prod-category" required>
+            <option value="pasteles">Pasteles</option>
+            <option value="cupcakes">Cupcakes</option>
+            <option value="bocaditos">Bocaditos</option>
+            <option value="especiales">Especiales</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label" for="prod-price">Precio (demo)</label>
+          <input class="form-input" id="prod-price" type="text" value="S/ --" readonly />
+        </div>
+        <div>
+          <label class="form-label" for="prod-stock">Disponibilidad</label>
+          <select class="form-select" id="prod-stock">
+            <option>Disponible</option>
+            <option>Agotado</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label" for="prod-desc">Descripción</label>
+          <textarea class="form-textarea" id="prod-desc" placeholder="Descripción breve..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full">Guardar producto</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/scripts.js"></script>
+</body>
+</html>
